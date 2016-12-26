@@ -1,0 +1,9 @@
+stream
+|from()
+	.measurement('cpu')
+|groupBy('host')
+|deadman(0.0,1m)
+	.message('{{ index .Tags "host" }} is {{ .Level }} ')
+.stateChangesOnly()
+.telegram()
+.chatId('-197250763')
